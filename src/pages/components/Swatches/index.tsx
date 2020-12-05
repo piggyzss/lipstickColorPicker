@@ -17,7 +17,8 @@ const minMax: MinMax = {
   minLight: 6.666666666666664,
 }
 
-const bgDpi = 1
+const bgDpi = 0.2
+const zrDpi = 1
 
 interface State {
   color: string;
@@ -120,11 +121,14 @@ class Swatches extends PureComponent<SwatchesProps, State> {
     const hsl = tinycolor(tinycolor(color).toRgb()).toHsl()
     var hue = this.encodeHue(hsl.h)
     var light = hsl.l * 100
+
     const x = (hue - minMax.minHue) * width / (minMax.maxHue - minMax.minHue)
     const y = height - (light - minMax.minLight) * height / (minMax.maxLight - minMax.minLight)
 
+    var pos = [x * zrDpi, y * zrDpi]
+
     this.ctx.beginPath()
-    this.ctx.arc(x, y, 5, 0*Math.PI, 2*Math.PI)
+    this.ctx.arc(pos[0], pos[1], 5, 0*Math.PI, 2*Math.PI)
     this.ctx.strokeStyle = 'rgba(255, 255, 255, .8)'
     this.ctx.stroke()
     this.ctx.closePath()
@@ -191,7 +195,7 @@ class Swatches extends PureComponent<SwatchesProps, State> {
             width: 80,
             height: 40,
             top: 30,
-            left: 30,
+            left: 110,
             background: `${this.state.color}`,
             borderRadius: 2,
           }}>

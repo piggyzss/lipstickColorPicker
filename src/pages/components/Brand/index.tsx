@@ -83,16 +83,33 @@ export default connect(mapStateToProps)(Brand)
 const BrandWrapper = styled.div`
   padding: 20px;
 
-  .ant-radio-button-wrapper-checked:not(.ant-radio-button-wrapper-disabled) {
-    z-index: 1;
-    color:rgb(209,44,50);
-    background: #fff;
-    border-color: rgb(209,44,50);
+  .ant-radio-button-wrapper-checked {
+    &:not(.ant-radio-button-wrapper-disabled) {
+      &::before {
+        background-color:rgb(209,44,50);
+      }
+      &:hover {
+        color:rgb(209,44,50);
+      }
+      z-index: 1;
+      color:rgb(209,44,50);
+      background: #fff;
+      border-color: rgb(209,44,50);
+    }
+    &:not([class*=' ant-radio-button-wrapper-disabled']).ant-radio-button-wrapper:first-child {
+      border-right-color:rgb(209,44,50);
+    }
+
+    &:not(.ant-radio-button-wrapper-disabled):hover::before {
+      background-color: red;
+    }
   }
-  .ant-radio-button-wrapper-checked:not(.ant-radio-button-wrapper-disabled):hover {
-    color:rgb(209,44,50);
-    /* border-color: #40a9ff; */
+  .ant-radio-button-wrapper {
+    &:hover {
+      color: rgb(209,44,50);
+    }
   }
+
 `
 
 const ColorBoard = styled.div`
