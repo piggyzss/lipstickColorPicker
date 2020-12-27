@@ -74,6 +74,9 @@ class Swatches extends PureComponent<SwatchesProps, State> {
       this.ctx.clearRect(0, 0, width, height)
       this.drawColorBackground()
       this.drawColorPoint(nextProps.selectColor)
+      this.setState({
+        color: nextProps.selectColor,
+      })
     }
 
     return true

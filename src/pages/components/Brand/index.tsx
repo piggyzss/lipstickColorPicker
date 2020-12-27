@@ -47,30 +47,32 @@ class Brand extends PureComponent<BrandProps> {
         </Radio.Group>
         <ColorBoard>
           {Object.entries(data).map(([group, groupData]) => { 
-            return (
-              <>
-                <Divider orientation="left">{group}</Divider>
-                <ColorWrapper>
-                  {groupData.map(item => {
-                    const { info, color } = item
-                    const active = selectColor === color
-                    return (
-                      <Tooltip title={info}>
-                        <ColorBlock
-                          color={color} 
-                          active={active}
-                          onClick={() => {
-                            console.log('shanshan enter')
-                            this.handleColorChange(color)
-                          }}
-                        >
-                        </ColorBlock>
-                      </Tooltip>
-                    )
-                  })}
-                </ColorWrapper>
-              </>
-            )
+            return groupData.length
+              ? (
+                <>
+                  <Divider orientation="left">{group}</Divider>
+                  <ColorWrapper>
+                    {groupData.map(item => {
+                      const { info, color } = item
+                      const active = selectColor === color
+                      return (
+                        <Tooltip title={info}>
+                          <ColorBlock
+                            color={color} 
+                            active={active}
+                            onClick={() => {
+                              console.log('shanshan enter')
+                              this.handleColorChange(color)
+                            }}
+                          >
+                          </ColorBlock>
+                        </Tooltip>
+                      )
+                    })}
+                  </ColorWrapper>
+                </>
+              )
+              : null
           })}
         </ColorBoard>
       </BrandWrapper>
@@ -101,7 +103,7 @@ const BrandWrapper = styled.div`
     }
 
     &:not(.ant-radio-button-wrapper-disabled):hover::before {
-      background-color: red;
+      background-color: rgb(209,44,50);
     }
   }
   .ant-radio-button-wrapper {

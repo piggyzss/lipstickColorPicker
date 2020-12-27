@@ -11,13 +11,14 @@
   "gitHooks": {
     "pre-commit": "lint-staged"
   },
+  "husky": {
+    "hooks": {
+      "pre-commit": "lint-staged",
+      "commit-msg": "commitlint -E HUSKY_GIT_PARAMS"
+    }
+  },
   "lint-staged": {
-    "*.{js,jsx,less,md,json}": [
-      "prettier --write"
-    ],
-    "*.ts?(x)": [
-      "prettier --parser=typescript --write"
-    ]
+    "*.{js,jsx,ts,tsx}": "eslint --quiet --fix"
   },
   "dependencies": {
     "@ant-design/pro-layout": "^5.0.12",
